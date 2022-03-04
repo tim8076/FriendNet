@@ -13,9 +13,11 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     customError.statusCode = 400;
   }
   if (err.code && err.code === 11000) {
-    customError.msg = `重複的值 ${Object.keys(
+    customError.msg = `重複的 ${Object.keys(
       err.keyValue
-    )}, 請選擇另一個值`;
+    )}, 請使用另一個 ${Object.keys(
+      err.keyValue
+    )}`;
     customError.statusCode = 400;
   }
   if (err.name === 'CastError') {
@@ -23,7 +25,10 @@ const errorHandlerMiddleware = (err, req, res, next) => {
     customError.statusCode = 404;
   }
 
-  return res.status(customError.statusCode).json({ msg: customError.msg });
+  return res.status(customError.statusCode).json({
+    success: false, 
+    msg: customError.msg,
+  });
 }
 
 module.exports = errorHandlerMiddleware;
