@@ -18,6 +18,8 @@ const connectDB = require('./db/connect');
 // 載入路由
 const authRouter = require('./routes/authRoute');
 const userRouter = require('./routes/userRoute');
+const postRouter = require('./routes/postRoute');
+const commentRouter = require('./routes/commentRoute');
 
 // middleware
 app.use(morgan('tiny'));
@@ -37,6 +39,8 @@ app.get('/api/v1', (req, res) => {
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/post', postRouter);
+app.use('/api/v1/comment', commentRouter);
 
 app.use(notFoundMiddlerware);
 app.use(errorHandlerMiddlerware);

@@ -16,36 +16,47 @@ const UserSchema = mongoose.Schema({
     validate: {
       validator: validator.isEmail,
       message: '請提供電子信箱'
-    }
+    },
+    trim: true,
   },
   password: {
     type: String,
     required: [true, '請提供密碼'],
     minlength: 6,
+    trim: true,
   },
   address: {
     type: String,
     minlength: 6,
     default: '',
+    trim: true,
   },
   job: {
     type: String,
     default: '',
+    trim: true,
   },
   love: {
     type: String,
     minlength: 6,
     enum: ['單身', '已婚', '穩定交往中'],
     default: '單身',
+    trim: true,
   },
   selfInfo: {
     type: String,
     default: '',
+    trim: true,
   },
   photos: {
     type: String, //圖片url 位置
     default: '',
+    trim: true,
   },
+  posts: [{
+    type: mongoose.Types.ObjectId,
+    ref: 'Post',
+  }]
 })
 
 UserSchema.pre('save', async function(){
