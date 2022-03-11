@@ -38,7 +38,6 @@ const UserSchema = mongoose.Schema({
   },
   love: {
     type: String,
-    minlength: 6,
     enum: ['單身', '已婚', '穩定交往中'],
     default: '單身',
     trim: true,
@@ -56,7 +55,11 @@ const UserSchema = mongoose.Schema({
   posts: [{
     type: mongoose.Types.ObjectId,
     ref: 'Post',
-  }]
+  }],
+  friends: [{
+    type: mongoose.Types.ObjectId,
+    ref: 'User',
+  }],
 })
 
 UserSchema.pre('save', async function(){

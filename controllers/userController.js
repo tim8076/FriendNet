@@ -5,7 +5,8 @@ const { attachCookieToResponse, createTokenUser } = require('../utils/index');
 
 // 取得除了帳密以外的 所有使用者資料
 const getAllUsers = async (req, res) => {
-  const users = await User.find({}).select('-password');
+  const users = await User.find({}).select('-password')
+    .populate({ path: 'friends', select: 'name photos'});
   res.status(StatusCodes.OK).json({
     success: true,
     users,

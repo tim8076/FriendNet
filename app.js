@@ -20,6 +20,7 @@ const authRouter = require('./routes/authRoute');
 const userRouter = require('./routes/userRoute');
 const postRouter = require('./routes/postRoute');
 const commentRouter = require('./routes/commentRoute');
+const friendRouter = require('./routes/friendRoute');
 
 // middleware
 app.use(morgan('tiny'));
@@ -41,6 +42,7 @@ app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/post', postRouter);
 app.use('/api/v1/comment', commentRouter);
+app.use('/api/v1/friend', friendRouter);
 
 app.use(notFoundMiddlerware);
 app.use(errorHandlerMiddlerware);
