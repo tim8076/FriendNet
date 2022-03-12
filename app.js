@@ -8,6 +8,12 @@ const app = express();
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 
+// 安全性套件
+const helmet = require('helmet');
+const cors = require('cors');
+const xss = require('xss-clean');
+const rateLimit = require('express-rate-limit');
+
 // error handlers
 const errorHandlerMiddlerware = require('./middleware/error-handler');
 const notFoundMiddlerware = require('./middleware/not-found');
@@ -23,9 +29,18 @@ const commentRouter = require('./routes/commentRoute');
 const friendRouter = require('./routes/friendRoute');
 
 // middleware
+
+app.set('trust proxy', 1);
+app.use(rateLimiter({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+}));
 app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
+app.use(helmet());
+app.use(cors());
+app.use(xss());
 
 
 // 路由表
