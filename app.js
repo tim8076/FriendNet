@@ -7,6 +7,13 @@ const app = express();
 // 額外套件
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+})
 
 // 安全性套件
 const helmet = require('helmet');
@@ -27,11 +34,12 @@ const userRouter = require('./routes/userRoute');
 const postRouter = require('./routes/postRoute');
 const commentRouter = require('./routes/commentRoute');
 const friendRouter = require('./routes/friendRoute');
+const imageUploadRouter = require('./routes/imageUploadRoute');
 
 // middleware
 
 app.set('trust proxy', 1);
-app.use(rateLimiter({
+app.use(rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
 }));
@@ -41,6 +49,7 @@ app.use(cookieParser(process.env.JWT_SECRET));
 app.use(helmet());
 app.use(cors());
 app.use(xss());
+app.use(fileUpload({ useTempFiles: true }));
 
 
 // 路由表
@@ -58,6 +67,7 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/post', postRouter);
 app.use('/api/v1/comment', commentRouter);
 app.use('/api/v1/friend', friendRouter);
+app.use('/api/v1/image', imageUploadRouter);
 
 app.use(notFoundMiddlerware);
 app.use(errorHandlerMiddlerware);
