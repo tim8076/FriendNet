@@ -28,13 +28,12 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.3",
     "morgan": "^1.10.0",
+    "swagger-autogen": "^2.19.0",
+    "swagger-ui-express": "^4.3.0",
     "validator": "^13.7.0",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15",
-    "swagger-autogen": "^2.19.0",
-    "swagger-jsdoc": "^6.1.0",
-    "swagger-ui-express": "^4.3.0"
+    "nodemon": "^2.0.15"
   }
 }
