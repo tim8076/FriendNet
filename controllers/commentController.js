@@ -7,6 +7,13 @@ const { checkIdentity } = require('../utils/checkIdentity');
 
 // 新增貼文留言
 const createComment = async (req, res) => {
+  // #swagger.tags = ['Comments']
+  // #swagger.description = '新增貼文留言'
+  /* #swagger.parameters['obj'] = {
+          in: 'body',
+          description: 'comment, postId 是必填參數',
+          required: true,
+  } */
   const { comment, postId } = req.body;
   const { userId } = req.user;
   if (!comment) {
@@ -23,6 +30,8 @@ const createComment = async (req, res) => {
 };
 
 const updateComment = async (req, res) => {
+  // #swagger.tags = ['Comments']
+  // #swagger.description = '更新貼文'
   const { comment } = req.body;
   const { id: commentId } = req.params;
   const { userId } = req.user;
@@ -56,6 +65,8 @@ const updateComment = async (req, res) => {
 };
 
 const deleteComment = async (req, res) => {
+  // #swagger.tags = ['Comments']
+  // #swagger.description = '刪除留言'
   const { id: commentId } = req.params;
   const { userId } = req.user;
   const comment = await Comment.findOne({ _id: commentId});

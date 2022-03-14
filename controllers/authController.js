@@ -4,6 +4,13 @@ const CustomError = require('../errors/index');
 const { attachCookieToResponse, createTokenUser } = require('../utils/index');
 
 const register = async (req, res) => {
+  // #swagger.tags = ['Auth']
+  // #swagger.description = '使用者註冊'
+  /* #swagger.parameters['email', 'password', 'name'] = {
+           in: 'body',
+           description: 'password, email, name 是必填參數',
+           required: true,
+  } */
   const { email, password, name } = req.body;
   const emailAlreadyExists = await User.findOne({ email });
   if (emailAlreadyExists) {
@@ -20,6 +27,13 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
+  // #swagger.tags = ['Auth']
+  // #swagger.description = '使用者登入'
+  /* #swagger.parameters['email', 'password'] = {
+          in: 'body',
+          description: 'password, email 是必填參數',
+          required: true,
+  } */
   const { email, password } = req.body;
   if (!email || !password) {
     throw new CustomError.BadRequestError('請提供帳號和密碼');
@@ -45,6 +59,8 @@ const login = async (req, res) => {
 }
 
 const logout = (req, res) => {
+  // #swagger.tags = ['Auth']
+  // #swagger.description = '使用者登出'
   res.cookie('token', 'logout', {
     httpOnly: true,
     expires: new Date(Date.now())

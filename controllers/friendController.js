@@ -4,11 +4,14 @@ const CustomError = require('../errors/index');
 
 // 取得好友列表
 const getAllFriends = async (req, res) => {
+  // #swagger.tags = ['Friends']
   console.log('getAllFriends');
 };
 
 // 加入好友
 const addFriend = async (req, res) => {
+  // #swagger.tags = ['Friends']
+  // #swagger.description = '加入好友'
   const { id: friendId } = req.body;
   const { userId } = req.user;
   const currentUser = await User.findOne({ _id: userId });
@@ -25,6 +28,8 @@ const addFriend = async (req, res) => {
 
 // 取消好友
 const removeFriend = async (req, res) => {
+  // #swagger.tags = ['Friends']
+  // #swagger.description = '取消好友'
   const { id: friendId } = req.body;
   const { userId } = req.user;
   const currentUser = await User.findOne({ _id: userId });

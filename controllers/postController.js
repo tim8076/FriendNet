@@ -5,6 +5,8 @@ const CustomError = require('../errors/index');
 const { checkIdentity } = require('../utils/checkIdentity');
 
 const getAllPosts = async (req, res) => {
+  // #swagger.tags = ['Posts']
+  // #swagger.description = '取得所有貼文'
   const posts = await Post.find({})
     .populate({
       path: 'user',
@@ -25,6 +27,8 @@ const getAllPosts = async (req, res) => {
 };
 
 const getSinglePost = async (req, res) => {
+  // #swagger.tags = ['Posts']
+  // #swagger.description = '取得單一貼文'
   const { id: postId } = req.params;
   const post = await Post.findOne({ _id: postId })
     .populate({
@@ -49,6 +53,8 @@ const getSinglePost = async (req, res) => {
 
 // 新增貼文
 const createPost = async (req, res) => {
+  // #swagger.tags = ['Posts']
+  // #swagger.description = '新增貼文'
   const { content, picture } = req.body;
   const { userId } = req.user;
   if (!content) {
@@ -63,6 +69,8 @@ const createPost = async (req, res) => {
 
 // 刪除單一貼文
 const deleteSinglePost = async (req, res) => {
+  // #swagger.tags = ['Posts']
+  // #swagger.description = '刪除單一貼文'
   const { userId } = req.user;
   const { id: postId } = req.params;
   const post = await Post.findOne({ _id: postId });
@@ -83,6 +91,8 @@ const deleteSinglePost = async (req, res) => {
 
 // 更新單一貼文
 const updateSinglePost = async (req, res) => {
+  // #swagger.tags = ['Posts']
+  // #swagger.description = '更新貼文'
   const { userId } = req.user;
   const { id: postId } = req.params;
   const newPost = req.body.content;
@@ -105,6 +115,8 @@ const updateSinglePost = async (req, res) => {
 };
 
 const likePost = async (req, res) => {
+  // #swagger.tags = ['Posts']
+  // #swagger.description = '按讚貼文'
   const { likes } = req.body;
   const { id: postId } = req.params;
   if (!likes) {

@@ -5,6 +5,8 @@ const { attachCookieToResponse, createTokenUser } = require('../utils/index');
 
 // 取得除了帳密以外的 所有使用者資料
 const getAllUsers = async (req, res) => {
+  // #swagger.tags = ['Users']
+  // #swagger.description = '取得除了帳密以外的 所有使用者資料'
   const users = await User.find({}).select('-password')
     .populate({ path: 'friends', select: 'name photos'});
   res.status(StatusCodes.OK).json({
@@ -15,6 +17,8 @@ const getAllUsers = async (req, res) => {
 
 // 取得單一使用者資料
 const getSingleUser = async (req, res) => {
+  // #swagger.tags = ['Users']
+  // #swagger.description = '取得單一使用者資料'
   const userId = req.params.id;
   const user = await User.findOne({ _id: userId }).select('-password');
   if (!user) {
@@ -35,6 +39,8 @@ const showCurrentUser = async (req, res) => {
 
 // 更新使用者資料(帳密以外)
 const updateUser = async (req, res) => {
+  // #swagger.tags = ['Users']
+  // #swagger.description = '更新使用者資料(帳密以外)'
   const userId = req.params.id;
   const { name, address, job, family, selfInfo, photos } = req.body;
   const userObj = { name, address, job, family, selfInfo, photos };
@@ -56,6 +62,8 @@ const updateUser = async (req, res) => {
 
 // 更新使用者密碼
 const updateUserPassword = async (req, res) => {
+  // #swagger.tags = ['Users']
+  // #swagger.description = '更新使用者密碼'
   const { newPassword, oldPassword } = req.body;
   if (!newPassword || !oldPassword) {
     throw new CustomError.BadRequestError('請提供新密碼與舊密碼');

@@ -15,6 +15,9 @@ cloudinary.config({
   api_key: process.env.CLOUD_API_KEY,
   api_secret: process.env.CLOUD_API_SECRET,
 })
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('./swagger_output.json');
+app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // 安全性套件
 const helmet = require('helmet');
@@ -59,8 +62,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/api/v1', (req, res) => {
-  console.log(req.signedCookies);
-  res.send('cookie')
+  res.send('cookie');
 })
 
 app.use('/api/v1/auth', authRouter);
