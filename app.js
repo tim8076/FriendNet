@@ -51,7 +51,9 @@ app.use(morgan('tiny'));
 app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(helmet());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:8080/',
+}));
 app.use(xss());
 app.use(fileUpload({ useTempFiles: true }));
 
