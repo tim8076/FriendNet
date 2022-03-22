@@ -53,6 +53,7 @@ app.use(cookieParser(process.env.JWT_SECRET));
 app.use(helmet());
 app.use(cors({
   origin: 'http://localhost:8080',
+  credentials: true,
 }));
 app.use(xss());
 app.use(fileUpload({ useTempFiles: true }));
