@@ -54,8 +54,6 @@ app.use(helmet());
 app.use(cors({
   origin: 'http://localhost:8080',
   credentials: true,
-  sameSite: 'none',
-  secure: true,
 }));
 app.use(xss());
 app.use(fileUpload({ useTempFiles: true }));
