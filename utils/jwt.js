@@ -20,7 +20,7 @@ const attachCookieToResponse = ({ res, user }) => {
     expires: new Date(Date.now() + oneDay),
     // secure: process.env.NODE_ENV === 'production',
     signed: true,
-    domain: 'http://192.168.0.14:8080',
+    domain: 'http://192.168.0.14',
   })
 }
 
