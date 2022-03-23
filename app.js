@@ -52,7 +52,7 @@ app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(helmet());
 app.use(cors({
-  origin: 'http://localhost.com/',
+  origin: 'http://localhost:8080',
   credentials: true,
   sameSite: 'none',
 }));
