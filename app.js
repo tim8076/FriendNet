@@ -57,6 +57,7 @@ app.use(cors({
 }));
 app.use(xss());
 app.use(fileUpload({ useTempFiles: true }));
+app.set('trust proxy', 1);
 
 
 // 路由表
