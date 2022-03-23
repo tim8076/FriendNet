@@ -20,7 +20,7 @@ const attachCookieToResponse = ({ res, user }) => {
     expires: new Date(Date.now() + oneDay),
     signed: true,
     sameSite: 'none',
-    secure: true,
+    secure: false,
     domain: 'http://localhost:8080',
   })
 }
