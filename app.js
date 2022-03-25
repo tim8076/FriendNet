@@ -59,7 +59,6 @@ app.use(xss());
 app.use(fileUpload({ useTempFiles: true }));
 app.set('trust proxy', 1);
 
-
 // 路由表
 app.get('/', (req, res) => {
   res.send('歡迎來到friend-net專案');
