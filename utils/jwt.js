@@ -16,12 +16,12 @@ const attachCookieToResponse = ({ res, user }) => {
   const token = createJWT({ payload: user });
   const oneDay = 1000 * 60 * 60 * 24;
   res.cookie('token', token, {
-    httpOnly: true,
+    httpOnly: false,
     expires: new Date(Date.now() + oneDay),
     signed: true,
     sameSite: 'none', // sameSite:'none'
-    secure: true,
-    domain: '.app.localhost',
+    secure: false,
+    domain: 'http://192.168.0.11:8080'
   })
 }
 
