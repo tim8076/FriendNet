@@ -42,7 +42,6 @@ const imageUploadRouter = require('./routes/imageUploadRoute');
 
 // middleware
 
-app.set('trust proxy', 1);
 app.use(rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
