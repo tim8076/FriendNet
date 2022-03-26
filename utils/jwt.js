@@ -21,7 +21,7 @@ const attachCookieToResponse = ({ res, user }) => {
     signed: true,
     sameSite: 'none', // sameSite:'none'
     secure: false,
-    domain: 'http://localhost:8080',
+    domain: 'http://127.0.0.1:8080',
   })
 }
 
