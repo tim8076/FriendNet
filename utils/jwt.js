@@ -19,7 +19,6 @@ const attachCookieToResponse = ({ res, user }) => {
     httpOnly: false,
     expires: new Date(Date.now() + oneDay),
     signed: true,
-    sameSite: 'none', // sameSite:'none'
     secure: false,
     domain: 'http://127.0.0.1:8080',
   })
