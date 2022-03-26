@@ -51,7 +51,7 @@ app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 app.use(helmet());
 app.use(cors({
-  origin: 'http://192.168.0.11:8080',
+  origin: 'http://localhost:8080',
   credentials: true,
 }));
 app.use(xss());
